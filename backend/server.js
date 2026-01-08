@@ -13,6 +13,11 @@ connectDB();
 
 const app = express();
 
+app.get("/", (req, res) => {
+  res.send("API Running...");
+});
+
+
 app.get("/protected", authMiddleware, (req, res) => {
   res.json({ message: "Protected route", user: req.user });
 });
