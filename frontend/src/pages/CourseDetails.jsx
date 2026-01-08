@@ -10,7 +10,7 @@ export default function CourseDetails() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`${API}${id}`)
+    axios.get(`${API}/courses/${id}`)
       .then(res => setCourse(res.data))
       .catch(() => alert("Failed to load course"));
   }, [id]);
