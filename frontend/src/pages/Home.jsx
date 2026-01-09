@@ -34,7 +34,7 @@ export default function Home() {
     <div className="min-h-screen bg-slate-100">
       <div className="bg-white shadow p-4">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-          <h2 className="text-2xl font-bold">Learning Dashboard</h2>
+          <h2 className="text-2xl font-bold">Course Explorer</h2>
 
           <div className="flex gap-3">
             <button

@@ -24,12 +24,26 @@ export default function Login() {
       toast.error(error.response.data.message);
     }
   };
+  
+  
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-100 p-6">
-      <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md">
-        <h2 className="text-2xl font-bold text-center mb-6">Welcome</h2>
+  <div className="min-h-screen bg-gradient-to-r from-blue-600 to-indigo-700 flex items-center justify-center p-6">
+
+    <div className="max-w-6xl w-full bg-white/10 backdrop-blur-md rounded-xl shadow-lg grid grid-cols-1 md:grid-cols-2 overflow-hidden">
+
+      <div className="hidden md:flex flex-col justify-center p-10 text-white">
+        <h1 className="text-4xl font-bold mb-4">SkillBridge</h1>
+        <p className="text-lg">
+          Learn new skills. Build your future.  
+          Explore top courses crafted for modern careers.
+        </p>
+      </div>
+
+      <div className="bg-white p-8">
+        <h2 className="text-2xl font-bold text-center mb-6">Welcome Back</h2>
 
         <form onSubmit={handleLogin} className="space-y-4">
+
           <input
             className="w-full border p-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Email"
@@ -57,6 +71,10 @@ export default function Login() {
           </Link>
         </p>
       </div>
+
     </div>
-  );
+
+  </div>
+);
+
 }
