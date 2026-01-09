@@ -7,6 +7,8 @@ export default function CourseDetails() {
   const { id } = useParams();
   const [course, setCourse] = useState(null);
   const [promo, setPromo] = useState("");
+  const [promoValid, setPromoValid] = useState(false);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -14,6 +16,17 @@ export default function CourseDetails() {
       .then(res => setCourse(res.data))
       .catch(() => alert("Failed to load course"));
   }, [id]);
+
+  const applyPromo = () => {
+  if (promo === "BFSALE25") {
+    alert("Promo applied! 50% discount activated.");
+    setPromoValid(true);
+  } else {
+    alert("Invalid promo code");
+    setPromoValid(false);
+  }
+};
+
 
   const subscribe = async () => {
     try {
@@ -42,14 +55,24 @@ export default function CourseDetails() {
       <p>{course.price === 0 ? "Free" : `₹${course.price}`}</p>
 
       {course.price > 0 && (
-        <input
-          placeholder="Promo code"
-          value={promo}
-          onChange={(e) => setPromo(e.target.value)}
-        />
-      )}
+  <>
+    <input
+      placeholder="Promo code"
+      value={promo}
+      onChange={(e) => setPromo(e.target.value)}
+    />
 
-      <button onClick={subscribe}>Subscribe</button>
+    <button onClick={applyPromo}>Apply Promo Code</button>
+  </>
+)}
+
+<button 
+  onClick={subscribe} 
+  disabled={course.price > 0 && !promoValid}
+>
+  Subscribe
+</button>
+
     </div>
   );
 }

@@ -9,6 +9,15 @@ const router = express.Router();
 router.post("/", authMiddleware, async (req, res) => {
   try {
     const { courseId, promoCode } = req.body;
+    
+    const existing = await Subscription.findOne({
+      userId: req.user.id,
+      courseId
+    });
+
+    if (existing) {
+      return res.status(400).json({ message: "Already subscribed to this course" });
+    }
     const course = await Course.findById(courseId);
 
     if (!course) return res.status(404).json({ message: "Course not found" });
