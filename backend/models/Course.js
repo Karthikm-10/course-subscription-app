@@ -4,7 +4,11 @@ const courseSchema = new mongoose.Schema({
   title: String,
   description: String,
   price: Number,
-  image: String
+  image: {
+    type: String,
+    required: true
+  }
 });
+
 
 export default mongoose.model("Course", courseSchema);

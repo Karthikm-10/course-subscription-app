@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import { API } from "../config";
+import { toast } from "react-toastify";
 
 export default function Signup() {
   const [name, setName] = useState("");
@@ -11,7 +12,7 @@ export default function Signup() {
 
   const handleSignup = async (e) => {
     e.preventDefault();
-    if (!email || !password) return alert("Email and password required");
+    if (!email || !password) return toast.error("Email and password required");
 
     try {
       await axios.post(`${API}/auth/signup`, {
@@ -20,29 +21,59 @@ export default function Signup() {
         password
       });
 
-      alert("Signup successful");
+      toast.success("Signup successful");
       navigate("/");
     } catch (error) {
-      alert(error.response.data.message);
+      toast.error(error.response.data.message);
     }
   };
 
-  return (
-    <form onSubmit={handleSignup}>
-      <h2>Signup</h2>
+ return (
+  <div className="min-h-screen flex items-center justify-center bg-slate-100 p-6">
+    <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md">
 
-      <input placeholder="Name (optional)" value={name}
-        onChange={(e) => setName(e.target.value)} />
+      <h2 className="text-2xl font-bold text-center mb-6">Create Account</h2>
 
-      <input placeholder="Email" value={email} type="email"
-        onChange={(e) => setEmail(e.target.value)} />
+      <form onSubmit={handleSignup} className="space-y-4">
 
-      <input placeholder="Password" type="password" value={password}
-        onChange={(e) => setPassword(e.target.value)} />
+        <input
+          className="w-full border p-3 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
+          placeholder="Name(Optional)"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
 
-      <button>Signup</button>
+        <input
+          className="w-full border p-3 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
 
-      <p>Already have an account? <Link to="/">Login</Link></p>
-    </form>
-  );
+        <input
+          type="password"
+          className="w-full border p-3 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+
+        <button
+          className="w-full bg-green-600 text-white py-3 rounded hover:bg-green-700 transition cursor-pointer"
+        >
+          Sign Up
+        </button>
+      </form>
+
+      <p className="text-center mt-6 text-sm">
+        Already have an account?{" "}
+        <Link to="/" className="text-blue-600 hover:underline">
+          Login
+        </Link>
+      </p>
+
+    </div>
+  </div>
+);
+
 }
