@@ -27,7 +27,7 @@ export default function CourseDetails() {
     } else {
       setPromoValid(false);
       setDiscountedPrice(null);
-      alert("Invalid promo code");
+      toast.error("Invalid promo code");
     }
   };
 
