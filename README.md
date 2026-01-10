@@ -74,7 +74,7 @@ JWT_SECRET=your_jwt_secret
 
 Update `src/config.js`:
 
-```js
+
 export const API = "your_backend_url";
 
 🧪 How to Run Locally
@@ -110,9 +110,6 @@ Then render them here:
 ![Applied Promo](screenshots/appliedPromo.png)
 ![My Courses](screenshots/mycourses.png)
 
-📝 Assignment Notes
-
-This project demonstrates secure authentication, course subscription workflows, promo code validation, and a production-ready UI/UX as part of an internship technical assignment.
 
 🔑 Demo Credentials
 
